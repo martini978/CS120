@@ -1,0 +1,138 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> Introduction </title>
+        <style type="text/css">
+            body,html{font-family: Arial, Helvetica, sans-serif}
+            h1{color: #e70f0f; font-size: 32px;}
+            p.trip{display: block; max-width: 50%;}
+            h2{color: #330fe7; margin-bottom: 30px}
+            ul{border: 1px solid #000000; border-radius: 5px; 
+               margin: 0 600px 0 600px}
+            .food-container{max-width: 2000px; width: 100%; display: flex; 
+                            height: 300px}
+            .food-image{background-image: url('images_cs120/fav_food.jpeg');
+                        background-size: cover; background-position: center; 
+                        width:25%; display: inline-block}
+            .food-description{padding: 20px; width: 20%; float: right;}
+            tr:nth-child(odd){background-color: #cff1db;}
+            .form-container{max-width: 33%; width: 90%;}
+            .form-group{display: inline-block; width: 40%; align-items: right;}
+            .element-group{width: 40%; align-items: right; float: right}
+            #socials{position: fixed; right: 35px; top: 100px;}
+            
+        </style>
+    </head>
+    <body>
+        <h1> Martine Montas </h1>
+        <p class="trip"> I went to Barcelona after getting my Bachelors degree.
+            It was my celebratory graduation trip. I was scared traveling by 
+            myself, but I really loved exploring and gaining confidence in being
+            alone. 
+        </p>
+
+        <h2> Favorite Pet Names </h2>
+        <ul>
+            <li> A dog name Bulldog </li>
+            <li> A hamster names Cheeks </li>
+            <li> A monkey named Tails </li>
+        </ul>
+
+        <h2> Favorite Restaurant </h2>
+        <a target="_blank" href="https://fogodechao.com/?utm_source&utm_medium=search&utm_campaign=evg&utm_id=lf-cnvrs&utm_term&utm_content=814399374713&gclsrc=aw.ds&mkwid=s&pcrid=814399374713&kw=fogo%20de%20chao&pmt=e&pdv=c&slid&gad_source=1&gad_campaignid=23970237351&gbraid=0AAAAAok23aMUwy97KX9SgrgW1DZy-tLYb&gclid=CjwKCAjwqonVBhA4EiwA9wYJ3SbIuMPlqw7l9KG9jUlL5P_NYncoSMlU2EkaGUqv29xYXFpm6VwvJxoCiXcQAvD_BwE"> Fogo de Chao </a> 
+
+        <h2> Favorite Food </h2>
+        <div class="food-container">
+            <div class="food-image"></div>
+            <div class="food-description">
+            <p> This is my favorite food. It is  cultural dish and I have been 
+            eating it since I was little. It is one of my favorite fods still to
+            this day.
+            </p>
+            </div>
+        </div>
+
+        <br clear="all" />
+
+        <h2> Favorite Books </h2>
+        <table border="1" cellpadding="4" cellspacing="0">
+            <tr>
+                <th> Book Name </th>
+                <th> Image </th>
+                <th> Author </th>
+            </tr>
+            <tr>
+                <td> Scythe </td>
+                <td> <img src="images_cs120/scythe.jpeg" width="150" > </td>
+                <td> Neal Shusterman </td>
+            </tr>
+            <tr>
+                <td> Unwind </td>
+                <td> <img src="images_cs120/unwind.jpeg" width="150" > </td>
+                <td> Neal Shusterman </td>
+                
+            </tr>
+            <tr>
+                <td> Internment </td>
+                <td> <img src="images_cs120/internment.jpeg" width="150" ></td>
+                <td> Samira Ahmed </td>
+            </tr>
+            <tr>
+                <td> When She Woke </td>
+                <td> <img src="images_cs120/when_she_woke.jpeg" width="150" ></td>
+                <td> Hillary Jordan </td>
+            </tr>
+        </table>
+
+        <h2> Guest Book </h2>
+        <form action="#" method="get">
+        <div class="form-container">
+            <div class="form-group"></div>
+            <label> Full Name: </label> 
+            <div class="element-group">
+                <input type="text" name="name" id="the_name">
+            </div>
+            <br /> <br />
+            <div class="form-group"></div>
+            <label> Email: </label> 
+            <div class="element-group">
+                <input type="text" name="name" id="the_name">
+            </div>
+            <br /> <br />
+            <div class="form-group"></div>
+            <label> State: </label>
+            <div class="element-group">
+                <select name="homeState">
+                <option value="NY"> New York </option>
+                <option value="NJ"> New Jersey </option>
+                <option value="MD"> Maryland </option>
+                <option value="OH"> Ohio </option>
+                <option value="FL"> Florida </option>
+                <option value="GA"> Georgia </option>
+                </select>
+            </div>
+            <br /> <br />
+        </div>
+        <input type="submit" value="Go!">
+        </form>
+
+        <div id="socials">
+            <div>
+                <a target="_blank" href="https://www.instagram.com">
+                    <img src="images_cs120/instagram_logo.jpeg" width="50px" height="50px">
+                </a>
+            </div>
+            <div>
+                <a target="_blank" href="https://www.facebook.com">
+                    <img src="images_cs120/facebook_logo.jpeg" width="50px" height="50px">
+                </a>
+            </div>
+            <div>
+                <a target="_blank" href="https://www.x.com">
+                    <img src="images_cs120/twitter_logo.jpeg" width="50px" height="50px">
+                </a>
+            </div>
+        </div>
+    </body>
+</html>
