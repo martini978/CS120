@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> User Interaction </title>
+        <style type="text/css">
+            body,html{font-size: 20px; font-family: Arial, Helvetica, 
+                      sans-serif}
+        </style>
+    </head>
+    <script>
+        function userName(){
+            first = prompt("What is your first name?");
+            last = prompt("What is your last name?");
+            alert("Your name is " + first + " " + last);
+
+            kids = parseInt(prompt("How many children do you have?"));
+            if (kids == 0){
+                output = "You have no children";
+            } else if (kids == 1){
+                output = "You have 1 child";
+            } else {
+                output = "You have " + kids + " children";
+            }
+            document.getElementById('results').innerHTML = output + "<br>";
+        }
+
+        function numbers(){
+            num = [];
+            for (i = 0; i < 3; i++){
+                input = prompt("Please enter a number!");
+                num.push(parseInt(input));
+            }
+            for (i = 0; i < num.length - 1; i++){
+                for (j = i + 1; j <num.length; j++){
+                    if (num[i] > num[j]){
+                        [num[i], num[j]] = [num[j], num[i]];
+                    }
+                }
+            }
+            console.log("Sorted numbers: ", num);
+        }
+
+        function range(start, end){
+            start = parseInt(prompt("Pleaase provide a number"));
+            end = parseInt(prompt("Please provide another number"));
+            oddNumbers = [];
+            sum = 0;
+            for (i = start; i <= end; i++){
+                sum += i;
+                if (i % 2 !== 0){
+                    oddNumbers.push(i);
+                }
+            }
+            resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML += "Odd numbers in range: " + 
+                                    oddNumbers.join(", ") + "<br>";
+            resultsDiv.innerHTML += "Sum of numbers in range: " + sum
+        }
+
+        function run(){
+            userName();
+            setTimeout(function(){numbers();
+                setTimeout(function(){range()}, 1000);
+            }, 50);
+        }
+        window.onload = run;
+    </script>
+    <body>
+        <h1>Tell me about youself</h1>
+        <div id="results">&nbsp;</div>
+    </body>
+</html>
+
