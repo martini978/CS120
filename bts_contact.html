@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Contact Us </title>
+        <link rel="stylesheet" href="bts_style.css" />
+        <style type="text/css">
+            body,html{margin: 0; padding: 0; height: 100vh; width: 100%}
+            body{background-image: 
+                url(images_cs120/bts_color_gradient_flipped.jpg);}
+            .logo_link{background-image: url(images_cs120/bts_white_logo.png); 
+                background-size: cover; box-sizing: border-box; display: block;
+                width: 100px; position: absolute; z-index: 999;
+                height: 100px; background-position: center; top: 20px}
+            #nav ul a{font-size: 22px; color: #ffff; text-decoration: none;
+                padding: 4px 8px}
+            #nav ul a:hover{color: #BE88BF; background-color: #F2F2F2;
+                border-radius: 5px;}
+            h1{margin-top: 100px; margin-left: 60px;}
+            .form_container{margin: 30px; display: inline-block; 
+                max-width: 2000px; width: 90%; text-align: center;}
+            .form_group{margin-bottom: 10px}
+            label{color: #fff; font-size: 25px; margin-bottom: 5px;
+                font-family: Arial, Helvetica, sans-serif; display: block;
+                text-align: left;}
+            .element_group{display: inline-block; padding: 25px;}
+            
+            
+        </style>
+    </head>
+    <body class="dark_theme">
+        <a href="proj1.html" class="logo_link">
+            <div id="group_logo"></div>   
+        </a>
+        <div id="nav">
+            <script src="bts_nav.js"></script>
+        </div>
+        <div class="form_container">
+            <h1 style="color: #fff; font-size: 90px;"> Book Us to Play! </h1>
+            <form action="#" method="get">
+            <div class="form_group"></div> 
+                <div class="element_group">
+                    <label> First Name: </label>
+                    <input type="text" style="width: 300px; height: 30px;"
+                    name="first_name" id="the_name">
+                </div>
+                <div class="element_group">
+                    <label> Last Name: </label>
+                    <input type="text" style="width: 300px; height: 30px;"
+                    name="last_name" id="the_name">
+                </div>
+            <br /> <br />
+            <div class="form_group"></div> 
+                <div class="element_group">
+                    <label> Email: </label>
+                    <input type="text" style="width: 300px; height: 30px;" 
+                    name="email" id="the_email">
+                </div>
+                <div class="element_group">
+                    <label> Phone Number: </label>
+                    <input type="text" style="width: 300px; height: 30px;" 
+                    name="number" id="the_number">
+                </div>
+            <br /> <br />
+            <div class="form_group"></div>
+                <div class="element_group">
+                    <label> Query Description </label>
+                    <textarea name="name" id="the_name" rows="15" cols="98">
+                    </textarea>
+                </div>
+            <br>
+            <input style="width: 100px; height: 30px;" type="submit" value="Submit">
+            </form>
+        </div>
+        <div id="footer">
+            <div class="name_contact">
+                <div>
+                    <h2> 방탄소년단 </h2>
+                </div>
+                <div class="contact_info">
+                    <p> Email: btsband@bangtan.com </p>
+                    <p> Phone: 897-983-9830 </p>
+                    <p> Address: 123 Winter Park Way, Lovely, MN 21093 </p>
+                </div>
+            </div>
+            <div class="socials">
+                <div>
+                    <a target="_blank" href="https://www.instagram.com">
+                        <img src="images_cs120/instagram_logo.png" width="35px" 
+                        height="35px">
+                    </a>
+                    <a target="_blank" href="https://www.facebook.com">
+                        <img src="images_cs120/facebook_logo.png" width="35px" 
+                        height="35px">
+                    </a>
+                    <a target="_blank" href="https://www.x.com">
+                        <img src="images_cs120/twitter_logo.png" width="35px" 
+                        height="35px">
+                    </a>
+                    <a target="_blank" href="https://www.apple.com/apple-music/">
+                        <img src="images_cs120/apple_music_logo.png" width="40px" 
+                        height="35px">
+                    </a>
+                    <a target="_blank" href="https://www.spotify.com">
+                        <img src="images_cs120/spotify_logo.png" width="35px" 
+                        height="35px">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
