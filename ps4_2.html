@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> JavaScript Practice </title>
+    </head>
+    <script>
+        window.onload = function(){
+            // String of comma-separated names
+            names = "Pat, Chris, Taylor, Henry, Nicole, Rochelle, Jenkins";
+            // Transformed string into array
+            namesArr = names.split(",");
+            // Display results in div created in task 0
+            result = document.getElementById("answer");
+            // Iterate through namesArr and add each name to the numbered list
+            result.innerHTML = 
+                "<ol>" + namesArr.map(item => `<li>${item}</li>`).join(" ") + "</ol>";
+        }
+    </script>
+    <body>
+        <div id="answer"></div>
+    </body>
+</html>

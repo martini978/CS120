@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> JavaScript Practice </title>
+        <style type="text/css">
+            #results{height: 200px; width: 200px; border: 1px solid #000;
+            margin-top: 40px; line-height: 20px;}
+        </style>
+    </head>
+    <script>
+        window.onload = function(){
+            stateList = document.getElementById("selectid");
+            result = document.getElementById("results");
+            states = ["Alabama", "Arkansas", "Florida", "Georgia", "Maine", 
+                "California", "Utah", "Alaska"]
+            // Loop through the sates array and create a new options element for 
+            // each state
+            function addStates(states){
+                // Clear the list
+                stateList.innerHTML = "";
+                for(i = 0; i < states.length; i++){
+                    // Create new option element
+                    newOption = document.createElement('option');
+                    newOption.textContent = states[i];
+                    // Add new created option to the upper div
+                    stateList.appendChild(newOption);
+                }
+                // Automatically select the first element in the list. 
+                stateList.selectedIndex = 0;
+            }
+            addStates(states);
+
+            // Add selected state when teh button is clicked
+            document.getElementById("addstate").onclick = function(){
+                result.innerHTML += stateList.options[stateList.selectedIndex].textContent + "<br>";
+                // Remove state you just added to the lower div from upper div.
+                stateList.remove(stateList.selectedIndex);
+                // Automatically select first item
+                stateList.selectedIndex = 0;
+            };
+
+            // Empty the div
+            document.getElementById("clearstates").onclick = function(){
+                result = document.getElementById("results");
+                result.innerHTML = "";
+                // Refill the upper div
+                addStates(states);
+            };
+        }
+    </script>
+    <body>
+        <select name="states" id="selectid" size="8"></select>
+        <input type="button" id="addstate" value="Add State">
+        <hr>
+        <div id="results"></div>
+        <input type="button" id="clearstates" value="Clear States">
+    </body>
+</html>

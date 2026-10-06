@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> JavaScript Practice </title>
+    </head>
+    <script>
+        window.onload = function(){
+            result = document.getElementById("answer");
+           
+            // For all buttons, do this when clicked
+            document.getElementById("btn1").onclick = function(){speak("Hello");};
+            document.getElementById("btn2").onclick = function(){speak("Good Bye");};
+            document.getElementById("btn3").onclick = function(){speak("Greetings");};
+
+            function speak(prefix){
+                // Extract the value of the input text and store in a variable
+                input = document.getElementById("nameid").value;
+                result.innerHTML = prefix + " " + input;
+            }
+        } 
+    </script>
+    <body>
+        <div id="answer"></div>
+        <form action="#" method="get">
+            <label> Name: </label>
+            <input type="text" name="name" id="nameid">
+            
+            <input type="button" name="btn1" id="btn1" value="Hello">
+            <input type="button" name="btn2" id="btn2" value="Good Bye">
+            <input type="button" name="btn3" id="btn3" value="Greetings">
+        </form>
+    </body>
+</html>
