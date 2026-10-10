@@ -15,7 +15,7 @@
     <script>
         window.onload = function(){
             $.get("songs.json", function(data){
-                songs = data.songs;
+                songs = data;
                 result = "";
                 // Loop through JSON object array 
                 songs.forEach(function(song){

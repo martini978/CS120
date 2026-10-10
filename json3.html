@@ -16,7 +16,7 @@
         window.onload = function(){
             songs = [];
             $.get("songs.json", function(data){
-                songs = data.songs;
+                songs = data;
                 // Create set to avoid duplicate entries 
                 options = new Set();
                 // Loop through the JSON array
