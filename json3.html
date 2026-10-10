@@ -33,22 +33,22 @@
                     newOption += `<option value="${genre}">${genre}</option>`;
                 });
                 document.getElementById("genres").innerHTML = newOption;
-            });
 
-            // Once the filter button is clicked
-            document.getElementById("filter").onclick = function(){
-                // Filter songs by the genre specified
-                selected_genre = document.getElementById("genres").value;
-                filtered_songs = "";
-                // Loop through each genre array
-                songs.forEach(function(song){
-                    // Find matching genre and display title
-                    if(song.genre.includes(selected_genre)){
-                        filtered_songs += `${song.title}<br>`;
-                    };
-                });
-                document.getElementById("filtered_songs").innerHTML = filtered_songs;
-            }
+                // Once the filter button is clicked
+                document.getElementById("filter").onclick = function(){
+                    // Filter songs by the genre specified
+                    selected_genre = document.getElementById("genres").value;
+                    filtered_songs = "";
+                    // Loop through each genre array
+                    songs.forEach(function(song){
+                        // Find matching genre and display title
+                        if(song.genre.includes(selected_genre)){
+                            filtered_songs += `${song.title}<br>`;
+                        };
+                    });
+                    document.getElementById("filtered_songs").innerHTML = filtered_songs;
+                };
+            }, "json");
         }
     </script>
     <body>
