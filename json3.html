@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> JSON Practice </title>
+        <style type="text/css">
+            #filtered_songs{height: 400px; width: 300px; margin-top: 40px;
+                border: 1px solid #000; line-height: 20px;}
+        </style>
+    </head>
+    <script src="https://code.jquery.com/jquery-4.0.0.js" 
+            integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U="
+            crossorigin="anonymous">
+    </script>
+    <script>
+        window.onload = function(){
+            songs = [];
+            $.get("songs.json", function(data){
+                songs = data.songs;
+                // Create set to avoid duplicate entries 
+                options = new Set();
+                // Loop through the JSON array
+                songs.forEach(function(song){
+                    // Loop through the genre arrays
+                    song.genre.forEach(function(genres){
+                        // Add each element to the set
+                        options.add(genres);
+                    });
+                });
+                newOption = "";
+                // Loop through the set and populate each one as an option
+                options.forEach(function(genre){
+                    newOption += `<option value="${genre}">${genre}</option>`;
+                });
+                document.getElementById("genres").innerHTML = newOption;
+            });
+
+            // Once the filter button is clicked
+            document.getElementById("filter").onclick = function(){
+                // Filter songs by the genre specified
+                selected_genre = document.getElementById("genres").value;
+                filtered_songs = "";
+                // Loop through each genre array
+                songs.forEach(function(song){
+                    // Find matching genre and display title
+                    if(song.genre.includes(selected_genre)){
+                        filtered_songs += `${song.title}<br>`;
+                    };
+                });
+                document.getElementById("filtered_songs").innerHTML = filtered_songs;
+            }
+        }
+    </script>
+    <body>
+        <form action="#" method="get">
+            <label> Genre: </label>
+                <select name="genres" id="genres"></select>
+            <input type="button" id="filter" value="Filter">
+        </form>
+        <div id="filtered_songs"></div>
+    </body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> JSON Practice </title>
+        <style type="text/css">
+            #results{height: 400px; width: 300px; border: 1px solid #000;
+            margin-top: 40px; line-height: 20px;}
+        </style>
+    </head>
+    <script src="https://code.jquery.com/jquery-4.0.0.js" 
+            integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U="
+            crossorigin="anonymous">
+    </script>
+    <script>
+        window.onload = function(){
+            $.get("songs.json", function(data){
+                songs = data.songs;
+                result = "";
+                // Loop through JSON object array 
+                songs.forEach(function(song){
+                    // Turn the genre array into a text string
+                    genre_str = song.genre.join(", ");
+                    // Grab each element and display
+                    result += `
+                        <strong> ${song.title}</strong><br>
+                        Artist: ${song.artist}<br>
+                        Genre: ${genre_str}<br>
+                        Released ${song.release_year}<br><br>
+                    `;
+                });
+                document.getElementById("results").innerHTML = result;
+            })
+        }
+    </script>
+    <body>
+        <div id="results"></div>
+    </body>
+</html>

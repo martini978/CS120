@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> JSON Practice </title>
+    </head>
+    <script>
+        // JSON object
+        $song_list = [
+            {
+            "title": "Pran Rezon",
+            "artist": "Domec Brusly",
+            "release_year": "2026",
+            "genre": ["Konpa"]
+            }, 
+            {
+            "title": "Vye Doule",
+            "artist": "Wid",
+            "release_year": "2026",
+            "genre": ["Konpa", "R&B"]
+            },
+            {
+            "title": "Money & Love",
+            "artist": "Wizkid",
+            "release_year": "2022",
+            "genre": ["Afrobeats"]
+            },
+            {
+            "title": "Dynamite",
+            "artist": "Tyla & Wizkid",
+            "release_year": "2025",
+            "genre": ["Afrobeats", "Amapiano"]
+            },
+            {
+            "title": "Terminal 2F",
+            "artist": "Gims & Dadju",
+            "release_year": "2024",
+            "genre": ["Hip Hop", "Rap"]
+            },
+            {
+            "title": "Omo To Sexy",
+            "artist": "BLNDE",
+            "release_year": "2025",
+            "genre": ["Afro-Pop"]
+            },
+            {
+            "title": "Oscar Winning Tears",
+            "artist": "Raye",
+            "release_year": "2023",
+            "genre": ["Contemporary R&B", "Pop Soul"]
+            },
+            {
+            "title": "Tears of Gold",
+            "artist": "Faouzia",
+            "release_year": "2019",
+            "genre": ["Contemporary R&B", "Alt Pop", "Electropop"]
+            }
+        ];
+        // Convert to a string
+        $song_str = JSON.stringify($song_list);
+        document.write($song_str); 
+    </script>
+    <body>
+        
+    </body>
+</html>
