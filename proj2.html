@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <title> Wordle Game </title>
         <style type="text/css">
-            body,html{text-align: center; background-color: #cbf3fe;}
+            body,html{text-align: center; background-color: #bce4ff;}
             #title{font-size: 60px; align-items: center;}
             .word{width: 70px; height: 70px; box-sizing: border-box; 
                 border: 2px solid #000; margin: 13px; display: inline-block;
@@ -20,10 +20,16 @@
                 box-sizing: border-box; text-align: center;}
             .key{width: 50px; height: 50px; border: 1px solid #000; 
                 margin: 8px; text-align: center; border-radius: 5px;
-                box-sizing: border-box; padding: 13px; margin-top: 12px}
+                box-sizing: border-box; padding: 13px; margin-top: 12px;}
+            #keyboard div[class*="letter"]{font-weight: 600}
             .keyboard_row{display: flex; justify-content: center;}
             @media(max-width: 700px){
                 #title{font-size: 45px;}
+            }
+            @media(max-width: 530px){
+                #title{font-size: 35px;}
+                .word{width: 50px; height: 50px}
+                .key{width: 40px; height: 40px; padding: 10px}
             }
         </style>
     </head>
@@ -49,6 +55,17 @@
             container.appendChild(new_row);
             }
 
+            // Variable to hold word array
+            words = ["apple", "acorn", "alert", "aloud", "arena", "brain", 
+                    "arrow", "brave", "bloom", "blink", "clean", "dance", 
+                    "diary", "dozen", "early", "ebony", "fence", "flour", 
+                    "girth", "humid", "happy", "house", "knife", "learn", 
+                    "lemon", "maybe", "novel", "phone", "plant", "pride", 
+                    "proof", "power", "queer", "quiet", "rainy", "realm", 
+                    "rigid", "salad", "sauce", "scare", "small", "scorn", 
+                    "shine", "smart", "sleep", "tense", "tepid", "touch", 
+                    "think", "twice", "upset", "usual", "video", "waive", 
+                    "weird", "whoop", "wreck", "write", "zebra", "zones"];
             current_word = "";
             word_row = 0;
             word_length = 5;
@@ -57,27 +74,14 @@
                 // Clear console
                 console.clear();
 
-                word = `https://random-word-api.herokuapp.com/all?lang=en&length=5`;
+                // Randomly pick a new word from the array at the start of game
+                random_word = Math.floor(Math.random() * words.length);
+                // Assign randomly picked word to be the current word
+                current_word = words[random_word];
 
-                fetch(word)
-                    .then(res => {
-                        if(!res.ok){
-                            throw Error("Could not find word");
-                        } else {
-                            return res.json();
-                        }
-                    })
-                    .then(data => {
-                        // Randomly pick a new word at the start of the game
-                        random_word = Math.floor(Math.random() * data.length);
-                        current_word = data[random_word].word;
-                        // Reset the row count to the beginning
-                        word_row = 0;
-                        console.log("Answer: ",  current_word);
-                    })
-                    .catch(error => {
-                        console.log("Error. Could not find word");
-                    })
+                // Reset the row count to the beginning
+                word_row = 0;
+                console.log("Answer: ",  current_word);
             }
 
             new_game();
@@ -100,22 +104,22 @@
             function keyboard_display(){
                 keyboard_div = document.getElementById('keyboard');
 
-                // Array of letters for each row
+                // Array of letters to represent qwerty keyboard 
                 letters = [['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
                             ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'], 
                             ['z', 'x', 'c', 'v', 'b', 'n', 'm']];
                 
-                // Loop through the array and add the letters to their specified
-                // div row
+                // Loop through the letters array
                 letters.forEach((letter_row, row_index) => {
-                    row_id = `row${row_index}`;
                     // Create div for each row
                     row_div = document.createElement('div');
-                    row_div.id = row_id;
+                    // Create id for each row div
+                    row_div.id = `row${row_index}`;
                     row_div.className = 'keyboard_row';
 
-                    // Add the accompanying letter to that row div
+                    // Loop through each row of letters
                     letter_row.forEach(letter => {
+                        // Create a key as a new Keyboard instance
                         new_key = new Keyboard(letter, row_div);
                     });
                     keyboard_div.appendChild(row_div);
@@ -130,89 +134,110 @@
                     alert("Game Over :(! The word was: " + current_word);
                     return;
                 }
-                
+
                 // Grab the user inputted word
                 input = document.getElementById("user_input").value;
-                // Split the inputted word into individual characters
-                word_input = input.split("");
-
+                
                 // Validate length of the word to make sure it's not too long
                 if(input.length != word_length){
                     alert("Please enter a 5 letter word " + input);
                     return;
                 }
 
-                whole_word = document.querySelectorAll('.row_guess');
-                active_row = whole_word[word_row];
-                // Variable to cross off duplicate letters
-                duplicates = current_word.split("");
+                // Check if word is a valid word using API
+                url = `https://freedictionaryapi.com/api/v1/entries/en/${input}`;
 
-                // Place each letter into a div in that row
-                for(i = 0; i < word_input.length; i++){
-                    target_box = active_row.querySelector(`.pos${i}`);
-                    target_box.textContent = word_input[i];
-
-                    // Check if the letters entered matches the correct word
-                    if(word_input[i] == current_word[i]){
-                        target_box.classList.add('green');
-                        // Remove that letter from the word array
-                        duplicates[i] = "";
-
-                        match = document.querySelector(`.letter-${word_input[i]}`);
-
-                        // Highlight matching letter in keyboard display
-                        if(match){
-                            match.classList.remove('yellow', 'grey');
-                            match.classList.add('green');
+                fetch(url)
+                    .then(res => res.json())
+                    .then(data => {
+                        if(data.entries.length == 0){
+                            throw new Error("Invalid Word");
                         }
-                    }
-                } 
+                        // Split the inputted word into individual characters
+                        word_input = input.split("");
+                        whole_word = document.querySelectorAll('.row_guess');
+                        active_row = whole_word[word_row];
+                        // Variable to cross off duplicate letters
+                        duplicates = current_word.split("");
 
+                        // Place each letter into a div in that row
+                        for(i = 0; i < word_input.length; i++){
+                            target_box = active_row.querySelector(`.pos${i}`);
+                            target_box.textContent = word_input[i];
 
-                for(i = 0; i < word_input.length; i++){
-                    target_box = active_row.querySelector(`.pos${i}`);
-                    // Check if letter box is already green
-                    if(target_box.classList.contains('green')){
-                        continue;
-                    }
-                    rem_letters = duplicates.indexOf(word_input[i]);
-                    // Check if the letter actually belongs to the word
-                    if(rem_letters != -1){
-                        target_box.classList.add('yellow');
-                        // Remove that letter from the word array
-                        duplicates[rem_letters] = "";
+                            // Check if the letters entered matches the correct word
+                            if(word_input[i] == current_word[i]){
+                                target_box.classList.add('green');
+                                // Remove that letter from the word array
+                                duplicates[i] = "";
 
-                        match = document.querySelector(`.letter-${word_input[i]}`);
+                                match = document.querySelector(`.letter-${word_input[i]}`);
 
-                        if(match){
-                            match.classList.add('yellow');
+                                // Highlight matching letter in keyboard display
+                                if(match){
+                                    match.classList.remove('yellow', 'grey');
+                                    match.classList.add('green');
+                                }
+                            }
+                        } 
+
+                        for(i = 0; i < word_input.length; i++){
+                            target_box = active_row.querySelector(`.pos${i}`);
+                            // Check if letter box is already green
+                            if(target_box.classList.contains('green')){
+                                continue;
+                            }
+                            rem_letters = duplicates.indexOf(word_input[i]);
+                            // Check if the letter actually belongs to the word
+                            if(rem_letters != -1){
+                                target_box.classList.add('yellow');
+                                // Remove that letter from the word array
+                                duplicates[rem_letters] = "";
+
+                                match = document.querySelector(`.letter-${word_input[i]}`);
+
+                                if(match){
+                                    match.classList.add('yellow');
+                                }
+                            } else {
+                                target_box.classList.add('grey');
+                                match = document.querySelector(`.letter-${word_input[i]}`);
+
+                                if(match){
+                                    match.classList.add('grey');
+                                }
+                            }
                         }
-                    } else {
-                        target_box.classList.add('grey');
-                        match = document.querySelector(`.letter-${word_input[i]}`);
 
-                        if(match){
-                            match.classList.add('grey');
+                        // End game if user guessed correctly before reaching the end
+                        if(input == current_word){
+                            alert("Congratulations!! You won the game!");
+                            resets.style.visibility='visible';
+                            return;
                         }
-                    }
-                }
-                word_row++;
-                // Clear the input box
-                document.getElementById("user_input").value = "";
 
-                // End game if user guessed correctly before reaching the end
-                if(input == current_word){
-                    alert("Congratulations!! You won the game!");
-                    resets.style.visibility='visible';
-                    return;
-                }
+                        // End game if user fails last try
+                        if(word_row == 4){
+                            resets.style.visibility='visible';
+                            alert("Game Over :(! The word was: " + current_word);
+                            return;
+                        }
+
+                        word_row++;
+                        // Clear the input box
+                        document.getElementById("user_input").value = ""; 
+                    })
+                    .catch(error => {
+                        alert("Not a valid word!");
+                        // Clear the input box
+                        document.getElementById("user_input").value = "";
+                    })
             }
 
             // Restart the game
             resets.addEventListener('click', () => {
                 resets.style.visibility='hidden';
 
-                // Clear the boards for a new game
                 all_rows = document.querySelectorAll('.word');
                 all_keys = document.querySelectorAll('.key');
 
@@ -223,6 +248,7 @@
                     target_box.classList.remove('green', 'yellow', 'grey');
                 })
 
+                // Remove styling on keyboard display
                 for(i = 0; i < all_keys.length; i++){
                     all_keys[i].classList.remove('green', 'yellow', 'grey');
                 }
